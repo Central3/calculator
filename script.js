@@ -35,20 +35,36 @@ keys.addEventListener("click", (event) => {
             clickedBtnContent === "÷"
         ) {
             operator = clickedBtnContent;
-            firstNumber = displayContent;
+            firstNumber = display.textContent;
 
             previousKeyCategory = "operator";
         }
 
-        console.log(firstNumber, operator, secondNumber);
+        if (clickedBtnContent === "=") {
+            if (!secondNumber) {
+                secondNumber = firstNumber;
+            }
+
+            display.textContent = operate(
+                Number(firstNumber),
+                Number(secondNumber),
+                operator
+            );
+
+            firstNumber = display.textContent;
+
+            previousKeyCategory = "equals";
+        }
+
+        console.log(firstNumber, secondNumber, operator);
     }
 });
 
 function operate(x, y, operator) {
-    if (operator === "+") console.log(add(num1, num2));
-    else if (operator === "-") console.log(subtract(num1, num2));
-    else if (operator === "*") console.log(multiply(num1, num2));
-    else if (operator === "/") console.log(divide(num1, num2));
+    if (operator === "+") return add(x, y);
+    else if (operator === "-") return subtract(x, y);
+    else if (operator === "×") return multiply(x, y);
+    else if (operator === "÷") return divide(x, y);
 }
 
 function add(x, y) {
