@@ -34,12 +34,18 @@ h6 {
 
 /* main styles */
 
+body {
+    display: flex;
+    justify-content: center;
+}
+
 .container {
-    width: 320px;
+    width: 464px;
 }
 
 .container__display {
     text-align: right;
+    font-size: 32px;
 }
 
 .container__buttons {
@@ -56,4 +62,5 @@ h6 {
 .container__buttons__group button {
     flex: 1;
     border-radius: 44px;
+    font-size: 32px;
 }
