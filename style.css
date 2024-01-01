@@ -1,0 +1,59 @@
+/* resets */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+/* main styles */
+
+.container {
+    width: 320px;
+}
+
+.container__display {
+    text-align: right;
+}
+
+.container__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.container__buttons__group {
+    display: flex;
+    gap: 4px;
+}
+
+.container__buttons__group button {
+    flex: 1;
+    border-radius: 44px;
+}
