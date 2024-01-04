@@ -34,6 +34,18 @@ keys.addEventListener("click", (event) => {
             clickedBtnContent === "×" ||
             clickedBtnContent === "÷"
         ) {
+            if (
+                firstNumber &&
+                secondNumber &&
+                previousKeyCategory !== "equals"
+            ) {
+                display.textContent = operate(
+                    Number(firstNumber),
+                    Number(secondNumber),
+                    operator
+                );
+            }
+
             operator = clickedBtnContent;
             firstNumber = display.textContent;
 
@@ -41,6 +53,10 @@ keys.addEventListener("click", (event) => {
         }
 
         if (clickedBtnContent === "=") {
+            if (!firstNumber) {
+                return;
+            }
+
             if (!secondNumber) {
                 secondNumber = firstNumber;
             }
@@ -56,29 +72,28 @@ keys.addEventListener("click", (event) => {
             previousKeyCategory = "equals";
         }
 
-        console.log(firstNumber, secondNumber, operator);
+        if (clickedBtnContent === "AC") {
+            display.textContent = "0";
+            firstNumber = 0;
+            secondNumber = 0;
+            operator = "";
+
+            previousKeyCategory = "clear";
+        }
     }
 });
 
 function operate(x, y, operator) {
-    if (operator === "+") return add(x, y);
-    else if (operator === "-") return subtract(x, y);
-    else if (operator === "×") return multiply(x, y);
-    else if (operator === "÷") return divide(x, y);
-}
+    let result;
 
-function add(x, y) {
-    return x + y;
-}
+    if (operator === "÷" && secondNumber === "0") {
+        return "0";
+    }
 
-function subtract(x, y) {
-    return x - y;
-}
+    if (operator === "+") result = x + y;
+    else if (operator === "-") result = x - y;
+    else if (operator === "×") result = x * y;
+    else if (operator === "÷") result = x / y;
 
-function multiply(x, y) {
-    return x * y;
-}
-
-function divide(x, y) {
-    return x / y;
+    return +(Math.round(result + "e+7") + "e-7");
 }
