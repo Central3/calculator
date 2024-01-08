@@ -13,17 +13,15 @@ keys.addEventListener("click", (event) => {
 
         if (!isNaN(clickedBtnContent)) {
             if (
-                display.textContent.trim() === "0" ||
+                display.innerText === "0" ||
                 previousKeyCategory === "operator"
             ) {
-                display.textContent = clickedBtnContent;
-                displayContent = display.textContent;
+                display.innerText = clickedBtnContent;
             } else {
-                display.textContent += clickedBtnContent;
-                displayContent = display.textContent;
+                display.innerText += clickedBtnContent;
             }
 
-            if (firstNumber) secondNumber = displayContent;
+            if (firstNumber) secondNumber = display.innerText;
 
             previousKeyCategory = "number";
         }
@@ -39,7 +37,7 @@ keys.addEventListener("click", (event) => {
                 secondNumber &&
                 previousKeyCategory !== "equals"
             ) {
-                display.textContent = operate(
+                display.innerText = operate(
                     Number(firstNumber),
                     Number(secondNumber),
                     operator
@@ -47,7 +45,7 @@ keys.addEventListener("click", (event) => {
             }
 
             operator = clickedBtnContent;
-            firstNumber = display.textContent;
+            firstNumber = display.innerText;
 
             previousKeyCategory = "operator";
         }
@@ -61,13 +59,13 @@ keys.addEventListener("click", (event) => {
                 secondNumber = firstNumber;
             }
 
-            display.textContent = operate(
+            display.innerText = operate(
                 Number(firstNumber),
                 Number(secondNumber),
                 operator
             );
 
-            firstNumber = display.textContent;
+            firstNumber = display.innerText;
 
             previousKeyCategory = "equals";
         }
@@ -79,6 +77,17 @@ keys.addEventListener("click", (event) => {
             operator = "";
 
             previousKeyCategory = "clear";
+        }
+
+        if (clickedBtnContent === ".") {
+            if (!display.innerText.includes(".")) {
+                display.innerText += ".";
+            }
+            if (previousKeyCategory === "operator") {
+                display.innerText = "0.";
+            }
+
+            previousKeyCategory = "decimal";
         }
     }
 });

@@ -55,7 +55,6 @@ body {
 }
 
 .container__display {
-    text-align: right;
     font-size: 48px;
     margin: 16px 0;
     background-color: #fff;
@@ -65,6 +64,7 @@ body {
     align-items: center;
     justify-content: flex-end;
     padding: 0 12px;
+    overflow: hidden;
 }
 
 .container__buttons {
@@ -91,4 +91,17 @@ body {
 
 .container__buttons__group button:hover {
     background-color: #eee;
+}
+
+#clear {
+    color: #de1738;
+}
+
+#equals {
+    background-color: #9C27B0;
+    color: #fff;
+}
+
+button.operator {
+    color: #555;
 }
