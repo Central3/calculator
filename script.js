@@ -1,5 +1,6 @@
 const display = document.querySelector(".container__display");
 const keys = document.querySelector(".container__buttons");
+const backspaceBtn = document.querySelector(".fa-backspace");
 
 let displayContent;
 let firstNumber;
@@ -11,7 +12,7 @@ keys.addEventListener("click", (event) => {
     if (event.target.tagName === "BUTTON") {
         const clickedBtnContent = event.target.textContent;
 
-        if (!isNaN(clickedBtnContent)) {
+        if (!isNaN(clickedBtnContent) && clickedBtnContent !== "") {
             if (
                 display.innerText === "0" ||
                 previousKeyCategory === "operator"
@@ -88,6 +89,14 @@ keys.addEventListener("click", (event) => {
             }
 
             previousKeyCategory = "decimal";
+        }
+
+        if (event.target === backspaceBtn) {
+            if (display.innerText.length > 1)
+                display.innerText = display.textContent.slice(0, -1);
+            else display.innerText = "0";
+
+            previousKeyCategory = "backspace";
         }
     }
 });
